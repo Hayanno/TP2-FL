@@ -34,7 +34,7 @@ public class StringArray {
 			}	
 		}
 		if (dupl >0){
-			String [] uniques=new String[list.length -dupl];
+			String [] uniques=new String[list.length - dupl];
 			String last=uniques[0]=list[0];
 			int index=0;
 			int fill=-1;
