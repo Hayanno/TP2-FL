@@ -1,14 +1,14 @@
 package stringArray;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
  * @author PR
  * @version 1
  * Unit tests for the StringArray class (First set)
  */
-
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
 
 import stringArray.StringArray;
 
