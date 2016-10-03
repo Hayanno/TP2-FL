@@ -41,7 +41,7 @@ public class StringArray {
 			while (++index<list.length) {
 				if (!last.equals(list[index])) {
 					last=list[index];
-					uniques[fill++]=last;
+					uniques[++fill]=last;
 				}
 			}
 			mlist=uniques;

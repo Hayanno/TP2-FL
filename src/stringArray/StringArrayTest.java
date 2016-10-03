@@ -26,6 +26,7 @@ public class StringArrayTest {
 	private static String[] slistdupl2 ={
 			"ab", "a", "b", "ab"
 	};
+	private static String[] slistempty = {};
 
 	private StringArray array1;
 	private StringArray array2;
@@ -83,5 +84,11 @@ public class StringArrayTest {
 	public void test2Dupl() {
 		array1 = new StringArray(slistdupl2);
 		assertEquals(3, array1.size());
+	}
+	
+	@Test
+	public void testEmptyList() {
+		array1 = new StringArray(slistempty);
+		assertEquals(0, array1.size());
 	}
 }
