@@ -60,16 +60,16 @@ public class Triangle {
 		this.sideC = sideC;
 	}
 
-	Triangle(double sideA, double sideB, double sideC) {
+	Triangle(double sideA, double sideB, double sideC) {		
+		setSideA(sideA);
+		setSideB(sideB);
+		setSideC(sideC);
+		
 		if(anySidesIsNotPositive())
 			throw new IllegalArgumentException("Sides are not all positives.");
 		
 		if(sidesViolatesTriangleInequality())
 			throw new IllegalArgumentException("Sides violates triangle inequality.");
-		
-		setSideA(sideA);
-		setSideB(sideB);
-		setSideC(sideC);
 	}
 	
 	public int type() {
