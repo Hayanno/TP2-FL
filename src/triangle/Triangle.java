@@ -36,6 +36,7 @@ public class Triangle {
 		return sideC;
 	}
 	
+	/*
 	private double angleAB() {
 		return Math.acos((sideA * sideA + sideC * sideC - sideB * sideB) / 2 * sideA * sideC);
 	}
@@ -47,6 +48,7 @@ public class Triangle {
 	private double angleAC() {
 		return Math.acos((sideA * sideA + sideB * sideB - sideC * sideC) / 2 * sideA * sideB);
 	}
+	*/
 
 	public void setSideA(double sideA) {
 		this.sideA = sideA;
@@ -60,16 +62,16 @@ public class Triangle {
 		this.sideC = sideC;
 	}
 
-	Triangle(double sideA, double sideB, double sideC) {
-		if(anySidesIsNotPositive())
+	Triangle(double sideA, double sideB, double sideC) {		
+		setSideA(sideA);
+		setSideB(sideB);
+		setSideC(sideC);
+		
+		if(anySidesIsNegative())
 			throw new IllegalArgumentException("Sides are not all positives.");
 		
 		if(sidesViolatesTriangleInequality())
 			throw new IllegalArgumentException("Sides violates triangle inequality.");
-		
-		setSideA(sideA);
-		setSideB(sideB);
-		setSideC(sideC);
 	}
 	
 	public int type() {
@@ -78,9 +80,9 @@ public class Triangle {
 		if(isEquilateral())
 			type = TriangleType.EQUILATERAL;
 		else if(isScalene()) {
-			if(isObtusangle())
+			if(isObtuse())
 				type = TriangleType.SCALENE_OBTUSANGLE;
-			else if(isAcutangle())
+			else if(isAcute())
 				type = TriangleType.SCALENE_ACUTANGLE;
 			else if(isRightAngled())
 				type = TriangleType.SCALENE_RECTANGLE;
@@ -88,9 +90,9 @@ public class Triangle {
 				type = TriangleType.INVALID;
 		}
 		else if(isIsosceles()) {
-			if(isObtusangle())
+			if(isObtuse())
 				type = TriangleType.ISOSCELES_OBTUSANGLE;
-			else if(isAcutangle())
+			else if(isAcute())
 				type = TriangleType.ISOSCELES_ACUTANGLE;
 			else if(isRightAngled())
 				type = TriangleType.ISOSCELES_RECTANGLE;
@@ -103,12 +105,20 @@ public class Triangle {
 		return type.getValue();
 	}
 	
-	private boolean isObtusangle() {
-		return angleAB() > 90 || angleAC() > 90 || angleBC() > 90;
+	private boolean isObtuse() {
+		//return angleAB() > 90 || angleAC() > 90 || angleBC() > 90;
+		
+		return 	sideA * sideA + sideB * sideB < sideC * sideC ||
+				sideA * sideA + sideC * sideC < sideB * sideB ||
+				sideC * sideC + sideB * sideB < sideA * sideA;
 	}
 	
-	private boolean isAcutangle() {
-		return angleAB() < 90 && angleAC() < 90 && angleBC() < 90;
+	private boolean isAcute() {
+		//return angleAB() < 90 && angleAC() < 90 && angleBC() < 90;
+		
+		return 	sideA * sideA + sideB * sideB > sideC * sideC ||
+				sideA * sideA + sideC * sideC > sideB * sideB ||
+				sideC * sideC + sideB * sideB > sideA * sideA;
 	}
 	
 	private boolean isScalene() {
@@ -131,14 +141,14 @@ public class Triangle {
 				sideC * sideC == sideA * sideA + sideB * sideB;
 	}
 	
-	private boolean anySidesIsNotPositive() {
+	private boolean anySidesIsNegative() {
 		return sideA <= 0 || sideB <= 0 || sideC <= 0;
 	}
 	
 	private boolean sidesViolatesTriangleInequality() {
-        return sideA > sideB + sideC
-        		|| sideB > sideA + sideC
-        		|| sideC > sideA + sideB;
+        return 	sideA > sideB + sideC ||
+        		sideB > sideA + sideC ||
+        		sideC > sideA + sideB;
     }
 	
 	
