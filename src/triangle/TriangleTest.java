@@ -73,4 +73,22 @@ public class TriangleTest {
 		triangle = new Triangle(1, 6, 2);
 		assertEquals(-1, triangle.type());
 	}
+	
+	@Test
+	public void testIsEquilateral() {
+		triangle = new Triangle(1, 1, 1);
+		assertEquals(6, triangle.type());
+	}
+	
+	@Test
+	public void testIsScaleneAcutangle() {
+		triangle = new Triangle(3, 4, 5);
+		assertEquals(0, triangle.type());
+	}
+	
+	@Test
+	public void testIsScaleneObtusangle() {
+		triangle = new Triangle(12, 13, 14);
+		assertEquals(0, triangle.type());
+	}
 }
